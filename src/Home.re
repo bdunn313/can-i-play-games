@@ -3,25 +3,30 @@ let logo: string = [%raw "require('./assets/logo.png')"];
 
 [@react.component]
 let make = () =>
-  <div className="h-screen flex justify-center items-center">
-    <div className="max-w-sm rounded overflow-hidden shadow-lg p-4">
-      <img className="w-full" src=logo alt="Sunset in the mountains" />
-      <div className="px-6 py-4">
-        <div className="font-bold text-xl mb-2"> {"RE-Tailwind" |> str} </div>
-        <p className="text-gray-700 text-base">
-          {"A reason react starter with tailwind" |> str}
-        </p>
-      </div>
-      <div className="px-6 py-4">
-        {[|"Reason React", "Tailwind"|]
-         |> Array.map(tag =>
-              <span
-                key=tag
-                className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mt-2">
-                {"#" ++ tag |> str}
-              </span>
-            )
-         |> React.array}
-      </div>
+  <div className="h-screen flex justify-center bg-gray-300">
+    <div className="max-w-xl px-4 py-16">
+      <header>
+        <h1 className="text-4xl"> {"Before I play games..." |> str} </h1>
+      </header>
+      <main>
+        <ProgressBar percent=45 />
+        <h2 className="text-2xl">
+          <span className="italic"> {"I" |> str} </span>
+          {" need to..." |> str}
+        </h2>
+        <TodoItem title={"Something here" |> str} />
+        <hr />
+        <h2 className="text-2xl">
+          <span className="italic"> {"Someone" |> str} </span>
+          {" needs to..." |> str}
+        </h2>
+        <TodoItem title={"Something here" |> str} />
+        <hr />
+        <h2 className="text-2xl">
+          <span className="italic"> {"I" |> str} </span>
+          {" can get bonus time if..." |> str}
+        </h2>
+        <TodoItem title={"Something here" |> str} />
+      </main>
     </div>
   </div>;
