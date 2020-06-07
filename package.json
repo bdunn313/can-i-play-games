@@ -8,7 +8,7 @@
     "clean": "bsb -clean-world",
     "test": "echo \"Error: no test specified\" && exit 1",
     "webpack": "webpack -w",
-    "webpack:production": "NODE_ENV=production webpack",
+    "webpack:production": "cross-env NODE_ENV=production webpack",
     "server": "webpack-dev-server",
     "re:build": "bsb -make-world -clean-world",
     "re:watch": "bsb -make-world -clean-world -w"
@@ -24,6 +24,8 @@
     "node": ">=8"
   },
   "dependencies": {
+    "@fullhuman/postcss-purgecss": "^2.2.0",
+    "extract-css-chunks-webpack-plugin": "^4.7.5",
     "postcss-flexbugs-fixes": "^4.1.0",
     "postcss-import": "^12.0.1",
     "postcss-preset-env": "^6.7.0",
@@ -35,7 +37,9 @@
     "url-loader": "^4.1.0"
   },
   "devDependencies": {
+    "@dylanirlbeck/tailwind-ppx": "^0.7.8",
     "bs-platform": "^7.3.2",
+    "cross-env": "^7.0.2",
     "css-loader": "^3.6.0",
     "file-loader": "^6.0.0",
     "html-webpack-plugin": "^4.3.0",
