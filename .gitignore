@@ -9,6 +9,7 @@ npm-debug.log
 .DS_Store
 .bsb.lock
 *.bs.js
+.tailwind_ppx_cache
 
 # Other ignores
 yarn-error.log
