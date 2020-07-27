@@ -19,6 +19,7 @@ let make = () => {
           generateTodos(~len=4, ~startId=6, ~category=Bonus, ()),
         )
     );
+
   let toggleById = id =>
     updateTodos(currentTodos =>
       Belt.Array.map(currentTodos, item =>
@@ -28,6 +29,7 @@ let make = () => {
         }
       )
     );
+    
   <div className=[%tw "h-screen flex justify-center bg-gray-300"]>
     <div className=[%tw "max-w-xl px-4 py-16"]>
       <header>
@@ -41,43 +43,28 @@ let make = () => {
           <span className=[%tw "italic"]> {"I" |> React.string} </span>
           {" need to..." |> React.string}
         </h2>
-        <ul>
-          {Belt.Array.keep(todos, item => item.category == Personal)
-           ->Belt.Array.map(({title, id} as item) =>
-               <li key={j|item-$title-$id|j}>
-                 <TodoItem item onChange={_ => toggleById(id)} />
-               </li>
-             )
-           |> React.array}
-        </ul>
+        <TodoList
+          todos={Belt.Array.keep(todos, item => item.category == Personal)}
+          toggleById
+        />
         <hr />
         <h2 className=[%tw "text-2xl"]>
           <span className=[%tw "italic"]> {"Someone" |> React.string} </span>
           {" needs to..." |> React.string}
         </h2>
-        <ul>
-          {Belt.Array.keep(todos, item => item.category == Shared)
-           ->Belt.Array.map(({title, id} as item) =>
-               <li key={j|item-$title-$id|j}>
-                 <TodoItem item onChange={_ => toggleById(id)} />
-               </li>
-             )
-           |> React.array}
-        </ul>
+        <TodoList
+          todos={Belt.Array.keep(todos, item => item.category == Shared)}
+          toggleById
+        />
         <hr />
         <h2 className=[%tw "text-2xl"]>
           <span className=[%tw "italic"]> {"I" |> React.string} </span>
           {" can get bonus time if..." |> React.string}
         </h2>
-        <ul>
-          {Belt.Array.keep(todos, item => item.category == Bonus)
-           ->Belt.Array.map(({title, id} as item) =>
-               <li key={j|item-$title-$id|j}>
-                 <TodoItem item onChange={_ => toggleById(id)} />
-               </li>
-             )
-           |> React.array}
-        </ul>
+        <TodoList
+          todos={Belt.Array.keep(todos, item => item.category == Bonus)}
+          toggleById
+        />
       </main>
     </div>
   </div>;
