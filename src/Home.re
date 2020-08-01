@@ -20,18 +20,6 @@ let make = () => {
         )
     );
 
-  // For Debugging
-  React.useEffect1(
-    () => {
-      Konsole.tableWithRestrictions(
-        Belt.Array.keep(todos, x => x.completed),
-        [|"category", "title", "completed"|],
-      );
-      Some(() => ());
-    },
-    [|todos|],
-  );
-
   let toggleById = id =>
     updateTodos(currentTodos =>
       Belt.Array.map(currentTodos, item =>
@@ -45,12 +33,13 @@ let make = () => {
   let percentDone =
     React.useMemo1(
       () => {
+        let nonBonus = Belt.Array.keep(todos, x => x.category != Bonus);
         let completed =
-          Belt.Array.keep(todos, x => x.completed)->Belt.Array.length;
-        let total = Belt.Array.length(todos);
-        int_of_float(
-          floor(float_of_int(completed) /. float_of_int(total) *. 100.),
-        );
+          Belt.Array.keep(nonBonus, x => x.completed)->Belt.Array.length;
+        let total = Belt.Array.length(nonBonus);
+        let percentage =
+          floor(float_of_int(completed) /. float_of_int(total) *. 100.);
+        int_of_float(percentage);
       },
       [|todos|],
     );
