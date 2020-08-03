@@ -12,7 +12,9 @@
     "server": "webpack-dev-server",
     "re:build": "bsb -make-world -clean-world",
     "re:watch": "bsb -make-world -clean-world -w",
-    "build:styles": "tailwindcss build ./src/tailwind.css -o ./build/main.css"
+    "build:styles": "tailwindcss build ./src/tailwind.css -o ./build/main.css",
+    "deploy:local": "yarn run build:styles ;  yarn run re:build ; yarn run webpack:production",
+    "deploy:vercel": "yarn run build:styles && yarn run re:build && yarn run webpack:production"
   },
   "keywords": [
     "BuckleScript",

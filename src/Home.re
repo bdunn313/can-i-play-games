@@ -28,7 +28,7 @@ let make = () => {
       )
     );
 
-  <div className=[%tw "h-screen flex flex-col items-stretch"]>
+  <div className=[%tw "h-screen flex flex-col items-stretch bg-gray-300 m-0"]>
     <Header todos />
     <main className=[%tw "px-4 py-16"]>
       <TodoList
