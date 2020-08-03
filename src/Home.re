@@ -44,8 +44,8 @@ let make = () => {
   let canPlayGames =
     React.useMemo1(() => percentDone >= 100, [|percentDone|]);
 
-  <div className=[%tw "h-screen flex justify-center bg-gray-300"]>
-    <div className=[%tw "max-w-xl px-4 py-16"]>
+  <div className=[%tw "h-screen flex flex-col items-stretch"]>
+    <div className=[%tw "px-4 py-16"]>
       <header>
         <h1 className=[%tw "text-4xl"]>
           {"I " |> React.string}
@@ -56,30 +56,23 @@ let make = () => {
         </h1>
       </header>
       <main>
-        <ProgressBar percent=percentDone />
-        <h2 className=[%tw "text-2xl"]>
-          <span className=[%tw "italic"]> {"I" |> React.string} </span>
-          {" need to..." |> React.string}
-        </h2>
+        <section>
+          {string_of_int(Config.baseGameMinutes) |> React.string}
+          {" minutes to unlock" |> React.string}
+          <ProgressBar percent=percentDone />
+        </section>
         <TodoList
+          title="I need to..."
           todos={Belt.Array.keep(todos, item => item.category == Personal)}
           toggleById
         />
-        <hr />
-        <h2 className=[%tw "text-2xl"]>
-          <span className=[%tw "italic"]> {"Someone" |> React.string} </span>
-          {" needs to..." |> React.string}
-        </h2>
         <TodoList
+          title="Someone needs to..."
           todos={Belt.Array.keep(todos, item => item.category == Shared)}
           toggleById
         />
-        <hr />
-        <h2 className=[%tw "text-2xl"]>
-          <span className=[%tw "italic"]> {"I" |> React.string} </span>
-          {" can get bonus time if..." |> React.string}
-        </h2>
         <TodoList
+          title="I can get bonus time if I..."
           todos={Belt.Array.keep(todos, item => item.category == Bonus)}
           toggleById
         />

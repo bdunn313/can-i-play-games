@@ -12,10 +12,21 @@ type t = {
 
 [@react.component]
 let make = (~item as {completed, title}, ~onChange) => {
-  <li className=[%tw "list-none"]>
-    <label className=[%tw "bg-white rounded shadow-xs cursor-pointer"]>
-      <input type_="checkbox" onChange checked=completed />
-      {title |> React.string}
-    </label>
-  </li>;
+  <label
+    className=[%tw
+      "flex justify-start items-start border rounded px-2 py-5 bg-white shadow-sm cursor-pointer select-none"
+    ]>
+    <div
+      className=[%tw
+        "bg-white border-2 rounded w-6 h-6 justify-center items-center mr-2"
+      ]>
+      <input
+        type_="checkbox"
+        onChange
+        checked=completed
+        className=[%tw "h-5 w-5 text-gray-600"]
+      />
+    </div>
+    {title |> React.string}
+  </label>;
 };
