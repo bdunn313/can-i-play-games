@@ -1,5 +1,3 @@
-let logo: string = [%raw "require('./assets/logo.png')"];
-
 let generateTodos =
     (~len, ~startId=0, ~category: TodoItem.category=Personal, ()) =>
   Belt.Array.range(startId, startId + len)
