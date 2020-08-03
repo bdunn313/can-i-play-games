@@ -11,7 +11,8 @@
     "webpack:production": "cross-env NODE_ENV=production webpack",
     "server": "webpack-dev-server",
     "re:build": "bsb -make-world -clean-world",
-    "re:watch": "bsb -make-world -clean-world -w"
+    "re:watch": "bsb -make-world -clean-world -w",
+    "build:styles": "tailwindcss build ./src/tailwind.css -o ./build/main.css"
   },
   "keywords": [
     "BuckleScript",
