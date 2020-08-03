@@ -41,13 +41,19 @@ let make = () => {
       },
       [|todos|],
     );
+  let canPlayGames =
+    React.useMemo1(() => percentDone >= 100, [|percentDone|]);
 
   <>
     <div className=[%tw "h-screen flex justify-center bg-gray-300"]>
       <div className=[%tw "max-w-xl px-4 py-16"]>
         <header>
           <h1 className=[%tw "text-4xl"]>
-            {"Before I play games..." |> React.string}
+            {"I " |> React.string}
+            <em className=[%tw "italic"]>
+              {(canPlayGames ? "Can" : "Cannot") |> React.string}
+            </em>
+            {" Play Games!" |> React.string}
           </h1>
         </header>
         <main>
