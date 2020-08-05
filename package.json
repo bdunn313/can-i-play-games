@@ -14,7 +14,9 @@
     "re:watch": "bsb -make-world -clean-world -w",
     "build:styles": "tailwindcss build ./src/tailwind.css -o ./build/main.css",
     "deploy:local": "yarn run build:styles ;  yarn run re:build ; yarn run webpack:production",
-    "deploy:vercel": "yarn run build:styles && yarn run re:build && yarn run webpack:production"
+    "deploy:vercel": "yarn run build:styles && yarn run re:build && yarn run webpack:production",
+    "prisma:introspect": "prisma introspect",
+    "prisma:generate": "prisma generate"
   },
   "keywords": [
     "BuckleScript",
@@ -28,6 +30,8 @@
   },
   "dependencies": {
     "@fullhuman/postcss-purgecss": "^2.3.0",
+    "@prisma/client": "2.4.0",
+    "bs-platform": "^7.3.2",
     "extract-css-chunks-webpack-plugin": "^4.7.5",
     "postcss-flexbugs-fixes": "^4.1.0",
     "postcss-import": "^12.0.1",
@@ -38,11 +42,11 @@
     "reason-react": ">=0.9.1",
     "style-loader": "^1.2.1",
     "tailwindcss": "^1.6.0",
-    "url-loader": "^4.1.0",
-    "bs-platform": "^7.3.2"
+    "url-loader": "^4.1.0"
   },
   "devDependencies": {
     "@dylanirlbeck/tailwind-ppx": "^0.7.9",
+    "@prisma/cli": "2.4.0",
     "cross-env": "^7.0.2",
     "css-loader": "^4.2.0",
     "file-loader": "^6.0.0",

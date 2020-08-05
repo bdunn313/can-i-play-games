@@ -1,0 +1,54 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model categories {
+  category_id Int      @default(autoincrement()) @id
+  name        String   @unique
+  created     DateTime @default(now())
+  tasks       tasks[]
+}
+
+model groups {
+  group_id Int      @default(autoincrement()) @id
+  name     String
+  created  DateTime @default(now())
+  tasks    tasks[]
+  users    users[]
+}
+
+model roles {
+  role_id Int      @default(autoincrement()) @id
+  name    String   @unique
+  created DateTime @default(now())
+  users   users[]
+}
+
+model tasks {
+  task_id     Int        @default(autoincrement()) @id
+  category_id Int
+  group_id    Int
+  user_id     Int?
+  title       String
+  created     DateTime   @default(now())
+  categories  categories @relation(fields: [category_id], references: [category_id])
+  groups      groups     @relation(fields: [group_id], references: [group_id])
+  users       users?     @relation(fields: [user_id], references: [user_id])
+}
+
+model users {
+  user_id  Int      @default(autoincrement()) @id
+  name     String
+  email    String   @unique
+  created  DateTime @default(now())
+  group_id Int
+  role_id  Int
+  groups   groups   @relation(fields: [group_id], references: [group_id])
+  roles    roles    @relation(fields: [role_id], references: [role_id])
+  tasks    tasks[]
+}
