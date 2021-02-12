@@ -14,3 +14,6 @@ npm-debug.log
 # Other ignores
 yarn-error.log
 .tailwind_ppx_cache
+
+# Secrets
+.env

@@ -11,6 +11,7 @@ let make = () => {
     ->Belt.Array.concat(generateTodos(~len=0, ~startId=4, ~category=Shared, ()))
     ->Belt.Array.concat(generateTodos(~len=4, ~startId=6, ~category=Bonus, ()))
   )
+  let (telemetry, _setTelemetry) = React.useState(_ => TelemetryProvider.loadTelemetry())
 
   let toggleById = id =>
     updateTodos(currentTodos =>
@@ -22,24 +23,26 @@ let make = () => {
       )
     )
 
-  <div className=%tw("h-screen flex flex-col items-stretch bg-gray-300 m-0")>
-    <Header todos />
-    <main className=%tw("px-4 py-16")>
-      <TodoList
-        title="I need to..."
-        todos={Belt.Array.keep(todos, item => item.category == Personal)}
-        toggleById
-      />
-      <TodoList
-        title="Someone needs to..."
-        todos={Belt.Array.keep(todos, item => item.category == Shared)}
-        toggleById
-      />
-      <TodoList
-        title="I can get bonus time if I..."
-        todos={Belt.Array.keep(todos, item => item.category == Bonus)}
-        toggleById
-      />
-    </main>
-  </div>
+  <TelemetryProvider value=telemetry>
+    <div className=%tw("h-screen flex flex-col items-stretch bg-gray-300 m-0")>
+      <Header todos />
+      <main className=%tw("px-4 py-16")>
+        <TodoList
+          title="I need to..."
+          todos={Belt.Array.keep(todos, item => item.category == Personal)}
+          toggleById
+        />
+        <TodoList
+          title="Someone needs to..."
+          todos={Belt.Array.keep(todos, item => item.category == Shared)}
+          toggleById
+        />
+        <TodoList
+          title="I can get bonus time if I..."
+          todos={Belt.Array.keep(todos, item => item.category == Bonus)}
+          toggleById
+        />
+      </main>
+    </div>
+  </TelemetryProvider>
 }
