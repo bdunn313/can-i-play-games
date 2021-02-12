@@ -1,6 +1,7 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const ExtractCssChunks = require("extract-css-chunks-webpack-plugin");
+const Dotenv = require("dotenv-webpack");
 const outputDir = path.join(__dirname, "build/");
 
 const isProd = process.env.NODE_ENV === "production";
@@ -21,6 +22,7 @@ module.exports = {
       filename: "[name].css",
       chunkFilename: "[id].css",
     }),
+    new Dotenv(),
   ],
   devServer: {
     compress: true,
