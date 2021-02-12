@@ -1,26 +1,30 @@
+let todosReducer = ((completed, total, bonus), todo: TodoItem.t) =>
+  switch (todo.completed, todo.category == Bonus) {
+  | (true, true) => (completed, total, bonus +. 1.)
+  | (true, false) => (completed +. 1., total +. 1., bonus)
+  | (false, _) => (completed, total +. 1., bonus)
+  }
+
+
 @react.component
 let make = (~todos: array<TodoItem.t>) => {
-  let percentDone = React.useMemo1(() => {
-    let nonBonus = Belt.Array.keep(todos, x => x.category != Bonus)
-    let completed = Belt.Array.keep(nonBonus, x => x.completed)->Belt.Array.length
-    let total = Belt.Array.length(nonBonus)
-    let percentage = floor(float_of_int(completed) /. float_of_int(total) *. 100.)
-    int_of_float(percentage)
+  let (percentDone, canPlayGames, bonusTime) = React.useMemo1(() => {
+    let (completed, total, bonus) = todos->Belt.Array.reduce((0., 0., 0.), todosReducer)
+    let percentage = floor(completed /. total *. 100.)
+    let percentDone = percentage->int_of_float
+    let canPlayGames = percentDone >= 100
+    let bonusTime = bonus->int_of_float * Config.minutesPerBonusTask
+
+    (percentDone, canPlayGames, bonusTime)
   }, [todos])
-  let canPlayGames = React.useMemo1(() => percentDone >= 100, [percentDone])
-  let bonusTime = React.useMemo1(
-    () =>
-      Belt.Array.keep(todos, x => x.completed && x.category == Bonus)
-      ->Belt.Array.length
-      ->\"*"(Config.minutesPerBonusTask),
-    [todos],
-  )
+
   let wrapperClasses = React.useMemo1(() => {
     open Cn
     %tw("flex flex-col justify-center items-stretch")
     ->append(%tw("bg-yellow-300 text-yellow-800")->on(!canPlayGames))
     ->append(%tw("bg-green-300 text-green-800")->on(canPlayGames))
   }, [canPlayGames])
+
   <header className=wrapperClasses>
     <section className=%tw("flex flex-col justify-center items-center pt-16 uppercase")>
       <LockIcon locked={!canPlayGames} size=100 />

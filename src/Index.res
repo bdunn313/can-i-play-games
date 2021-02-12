@@ -1,2 +1,2 @@
 %bs.raw(`require("./tailwind.css")`)
-ReactDOMRe.renderToElementWithId(<Home />, "root")
+ReactDOMRe.renderToElementWithId(<App />, "root")
