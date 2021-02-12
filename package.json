@@ -35,14 +35,14 @@
     "re-classnames": "^5.0.1",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "reason-react": ">=0.9.1",
+    "reason-react": "~0.9.1",
     "style-loader": "^1.2.1",
     "tailwindcss": "^1.6.0",
     "url-loader": "^4.1.0"
   },
   "devDependencies": {
     "@dylanirlbeck/tailwind-ppx": "^0.7.9",
-    "bs-platform": "^7.3.2",
+    "bs-platform": "^8.4.2",
     "cross-env": "^7.0.2",
     "css-loader": "^4.2.0",
     "file-loader": "^6.0.0",

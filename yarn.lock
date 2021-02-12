@@ -715,10 +715,10 @@ browserslist@^4.12.0, browserslist@^4.6.4:
     node-releases "^1.1.53"
     pkg-up "^2.0.0"
 
-bs-platform@^7.3.2:
-  version "7.3.2"
-  resolved "https://registry.yarnpkg.com/bs-platform/-/bs-platform-7.3.2.tgz#301f5c9b4e8cf5713cb60ca22e145e56e793affe"
-  integrity sha512-seJL5g4anK9la4erv+B2o2sMHQCxDF6OCRl9en3hbaUos/S3JsusQ0sPp4ORsbx5eXfHLYBwPljwKXlgpXtsgQ==
+bs-platform@^8.4.2:
+  version "8.4.2"
+  resolved "https://registry.yarnpkg.com/bs-platform/-/bs-platform-8.4.2.tgz#778dabd1dfb3bc95e0086c58dabae74e4ebdee8a"
+  integrity sha512-9q7S4/LLV/a68CweN382NJdCCr/lOSsJR3oQYnmPK98ChfO/AdiA3lYQkQTp6T+U0I5Z5RypUAUprNstwDtMDQ==
 
 buffer-from@^1.0.0:
   version "1.1.1"
@@ -4277,7 +4277,7 @@ readdirp@~3.4.0:
   dependencies:
     picomatch "^2.2.1"
 
-reason-react@>=0.9.1:
+reason-react@~0.9.1:
   version "0.9.1"
   resolved "https://registry.yarnpkg.com/reason-react/-/reason-react-0.9.1.tgz#30a887158200b659aa03e2d75ff4cc54dc462bb0"
   integrity sha512-nlH0O2TDy9KzOLOW+vlEQk4ExHOeciyzFdoLcsmmiit6hx6H5+CVDrwJ+8aiaLT/kqK5xFOjy4PS7PftWz4plA==
